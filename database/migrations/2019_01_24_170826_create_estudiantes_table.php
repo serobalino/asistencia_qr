@@ -15,14 +15,19 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->bigIncrements('id_es');
+            $table->unsignedInteger('id_di')->nullable();
             $table->string('dni_es')->unique();
             $table->string('nombres_es');
             $table->string('organizacion_es');
             $table->string('email_es')->unique();
             $table->boolean('email_v_es')->default(false);
+            $table->boolean('genero_es');
             $table->string('celular_es')->unique();
             $table->boolean('celular_v_es')->default(false);
+            $table->boolean('discapacidad_es')->default(false);
             $table->timestamps();
+
+            $table->foreign('id_di')->references('id_di')->on('discapacidades');
         });
     }
 
@@ -33,6 +38,8 @@ class CreateEstudiantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estudiantes');
+        Schema::dropIfExists('estudiantes', function (Blueprint $table){
+            $table->dropForeign(['id_di']);
+        });
     }
 }
