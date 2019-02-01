@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
     ],
 
