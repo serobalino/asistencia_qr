@@ -14,10 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::middleware(['verified'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/app/lista','BackendController@lista');
+});
 
 Route::get('/prueba',function(){
    return \App\User::all()->where('code','57e33fd0')->first();
