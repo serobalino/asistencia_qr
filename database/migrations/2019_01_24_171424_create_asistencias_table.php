@@ -18,6 +18,7 @@ class CreateAsistenciasTable extends Migration
             $table->unsignedBigInteger('id_es');
             $table->unsignedInteger('id_cu');
             $table->string('observacion_as')->nullable();
+            $table->boolean('tipo_as')->nullable();
             $table->timestamps();
 
             $table->foreign('id_cu')->references('id_cu')->on('inscripciones');
