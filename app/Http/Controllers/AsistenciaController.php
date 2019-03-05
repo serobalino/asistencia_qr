@@ -17,7 +17,7 @@ class AsistenciaController extends Controller
             $texto  =   '';
             foreach ($validacion->errors()->all() as $errores)
                 $texto.=$errores.PHP_EOL;
-            return (['val'=>false,'mensaje'=>$texto]);
+            return (['val'=>false,'mensaje'=>$texto,'datos'=>$datos->all()]);
         }else{
 
             return (['val'=>true,'mensaje'=>$datos]);
