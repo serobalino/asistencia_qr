@@ -11,7 +11,8 @@ class AsistenciaController extends Controller
         $validacion =   Validator::make($datos->all(), [
             'code'  => 'required|string|size:8',
             'date'  => 'required|date',
-            'time'  => 'required|date',
+            'time'  => 'required|date_format:H:i',
+            'type'  => 'required|boolean',
         ]);
         if($validacion->fails()){
             $texto  =   '';
