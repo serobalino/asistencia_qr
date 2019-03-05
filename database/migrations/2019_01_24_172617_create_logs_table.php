@@ -21,7 +21,6 @@ class CreateLogsTable extends Migration
             $table->timestamps();
 
             $table->foreign('id_us')->references('id')->on('users');
-            $table->foreign('id_es')->references('id_es')->on('estudiantes');
             $table->foreign('id_as')->references('id_as')->on('asistencias');
         });
     }
