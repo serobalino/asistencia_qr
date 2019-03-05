@@ -10,4 +10,11 @@ class Asistencia extends Model
     protected $primaryKey   =       "id_as";
     public $incrementing    =       false;
 
+    protected $appends = ['tipo'];
+
+    protected $connection   =   "mysql";
+
+    public function getTipoAttribute(){
+        return $this->attributes['tipo_as'] ? 'Checkin' : 'Checkout';
+    }
 }
