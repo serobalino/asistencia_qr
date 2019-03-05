@@ -19,6 +19,7 @@ class CreateAsistenciasTable extends Migration
             $table->unsignedInteger('id_cu');
             $table->string('observacion_as')->nullable();
             $table->boolean('tipo_as')->nullable();
+            $table->dateTime('fecha_as');
             $table->timestamps();
 
             $table->foreign('id_cu')->references('id_cu')->on('cursos');
