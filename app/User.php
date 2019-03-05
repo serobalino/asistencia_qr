@@ -29,6 +29,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    protected $casts    =   ['admin'=>'bool'];
+
     protected $appends = ['code'];
 
     public function getCodeAttribute(){
