@@ -48,6 +48,11 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'tem' => [
+            'driver' => 'local',
+            'root' => storage_path('qrs'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
