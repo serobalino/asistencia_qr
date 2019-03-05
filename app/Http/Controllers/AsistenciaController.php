@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 class AsistenciaController extends Controller
 {
     public function tomar(Request $datos){
+        return (['datos'=>$datos,'usuario'=>Auth::user()]);
+        /*
         $validacion =   Validator::make($datos->all(), [
             'code'  => 'required|string|size:8',
             'date'  => 'required|date',
@@ -21,6 +23,6 @@ class AsistenciaController extends Controller
         }else{
 
             return (['val'=>true,'mensaje'=>$datos]);
-        }
+        }*/
     }
 }
