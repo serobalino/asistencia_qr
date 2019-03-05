@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 class AsistenciaController extends Controller
 {
     public function tomar(Request $datos){
-        return (['datos'=>$datos,'usuario'=>Auth::user()]);
+        return (['datos'=>$datos,'usuario'=>auth('api')->user()]);
         /*
         $validacion =   Validator::make($datos->all(), [
             'code'  => 'required|string|size:8',
