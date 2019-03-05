@@ -21,8 +21,7 @@ class CreateAsistenciasTable extends Migration
             $table->boolean('tipo_as')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_cu')->references('id_cu')->on('inscripciones');
-            $table->foreign('id_es')->references('id_es')->on('inscripciones');
+            $table->foreign('id_cu')->references('id_cu')->on('cursos');
             $table->primary('id_as');
         });
     }
@@ -35,7 +34,7 @@ class CreateAsistenciasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('asistencias', function (Blueprint $table) {
-            $table->dropForeign(['id_cu','id_es']);
+            $table->dropForeign(['id_cu']);
         });
     }
 }
