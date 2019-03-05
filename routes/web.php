@@ -19,6 +19,7 @@ Auth::routes(['verify' => true]);
 Route::middleware(['verified'])->group(function () {
     Route::prefix('home')->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
+        Route::options('/', 'HomeController@historial');
 
         Route::get('/users','UsersController@vista')->name('users');
         Route::options('/users','UsersController@users');
@@ -26,6 +27,9 @@ Route::middleware(['verified'])->group(function () {
 
         Route::get('/registered','RegistradosController@vista')->name('registros');
         Route::options('/registered','RegistradosController@registros');
+
+        Route::get('/assistance','AsistenciaController@vista')->name('asistencia');
+        Route::options('/assistance','AsistenciaController@lista');
 
     });
 

@@ -1,8 +1,11 @@
 <template>
     <div class="col-md-10">
+        <div class="alert alert-primary" role="alert">
+            Double click to dowload QR code.
+        </div>
         <div class="card">
             <div class="card-body animated fadeIn">
-                <button class="btn btn-success" v-on:click="descargar">Descargar QR</button>
+                <button class="btn btn-success" v-on:click="descargar" v-if="false">Descargar QR</button>
                 <vue-good-table
                         styleClass="table table-hover"
                         @on-selected-rows-change="seleccionadas"
@@ -13,6 +16,7 @@
                             mode: 'records',
                             perPage: 10}"
                         :select-options="{ enabled: true }"
+                        @on-row-dblclick="descargarQr"
                 >
                     <template slot="table-row" slot-scope="props">
                         <span v-if="props.column.field =='inscripcion.imagen' ">
@@ -142,6 +146,9 @@
             seleccionados:[],
         }),
         methods:{
+            descargarQr:function(item){
+                location.href=item.row.imagen;
+            },
             cargar:function(){
                 let vm=this;
                 axios({

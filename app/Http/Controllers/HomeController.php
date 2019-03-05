@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Registro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,7 +45,7 @@ class HomeController extends Controller
 
             $a['name']      =   "Assistance";
             $a['icon']      =   "fa fa-check-circle";
-            $a['url']       =   "asd";
+            $a['url']       =   route('asistencia');
             $aux[]          =   $a;
 
             $a['name']      =   "Users";
@@ -56,5 +57,11 @@ class HomeController extends Controller
             'menu'  =>  $aux,
             'user'  =>  $usuario,
         ]);
+    }
+
+    public function historial(){
+        return Registro::with(["dueno","asistencia"])
+            ->where('id_us',Auth::user()->id)
+            ->get();
     }
 }

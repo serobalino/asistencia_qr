@@ -31,14 +31,14 @@ class QrController extends Controller
             $imagen->encode('png');
             Storage::disk('tem')->makeDirectory(Auth::user()->id);
             $imagen->save(storage_path("qrs\\$usu\\$buscar->id.png"));
-            return $imagen->response();
-            /*$headers = [
+            //return $imagen->response();
+            $headers = [
                 'Content-Type' => 'image/png',
-                'Content-Disposition' => 'attachment; filename='. $buscar->code,
+                'Content-Disposition' => 'attachment; filename='. md5($buscar->id),
             ];
             return response()->stream(function() use ($imagen) {
                 echo $imagen;
-            }, 200, $headers);*/
+            }, 200, $headers);
         }else{
             return abort(404);
         }

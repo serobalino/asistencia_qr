@@ -27,6 +27,7 @@ Vue.component('opciones', require('./components/menu').default);
 Vue.component('historia', require('./components/historia').default);
 Vue.component('usuarios', require('./components/usuarios').default);
 Vue.component('registros', require('./components/registros').default);
+Vue.component('asistencia', require('./components/asistencia').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

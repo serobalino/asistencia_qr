@@ -2,6 +2,7 @@
 
 namespace App\Pre;
 
+use App\Asistencia;
 use Illuminate\Database\Eloquent\Model;
 
 class Registrados extends Model
@@ -42,5 +43,9 @@ class Registrados extends Model
 
     public function documento (){
         return $this->hasOne(Documento::class,'id','id_tip_pert');
+    }
+
+    public function asistencias(){
+        return $this->hasMany(Asistencia::class,'id_es','id')->orderBy('fecha_as');
     }
 }
