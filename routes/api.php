@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('qr/{token}','QrController@crear')->name('generar');
+Route::post('/tomar', "AsistenciaController@tomar")->middleware('auth:api');
