@@ -14,7 +14,7 @@ class Registrados extends Model
     protected $appends          =       ['code','imagen','nombre_completo','nombre_principal'];
 
     public function getCodeAttribute(){
-        return hash_hmac('fnv1a32',$this->attributes['id'],config('app.key'));
+        return hash('fnv1a32',$this->attributes['id']);
     }
 
     public function getNombreCompletoAttribute(){
