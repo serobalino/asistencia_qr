@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/tomar', "AsistenciaController@tomar")->middleware('auth:api');
+Route::post('/tomar', "AsistenciaController@tomar");
