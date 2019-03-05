@@ -17,10 +17,29 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::middleware(['verified'])->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/app/lista','BackendController@lista');
+    Route::prefix('home')->group(function () {
+        Route::get('/', 'HomeController@index')->name('home');
+
+        Route::get('/users','UsersController@vista')->name('users');
+        Route::options('/users','UsersController@users');
+        Route::post('/users','UsersController@cambiar');
+
+        Route::get('/registered','RegistradosController@vista')->name('registros');
+        Route::options('/registered','RegistradosController@registros');
+
+    });
+
+    Route::get('qr/{token}','QrController@crear')->name('generar');
+
+    Route::prefix('app')->group(function () {
+        Route::get('menu','HomeController@menu');
+        Route::get('lista','BackendController@lista');
+    });
 });
+
+Route::get('/a',"RegistradosController@descargarQrs");
 
 Route::get('/prueba',function(){
    return \App\User::all()->where('code','57e33fd0')->first();
 });
+
