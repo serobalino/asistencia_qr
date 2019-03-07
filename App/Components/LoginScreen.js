@@ -64,7 +64,7 @@ class LoginScreen extends Component {
         if(this.state.modalVisible===false){
             this.setState({respuesta:{val:false,mensaje:"Processing",'icon':'md-clock','color':'#cce5ff'},modalVisible:true});
             if(data.data.length===8 && this.state.modalVisible===false){
-                fetch(BASE+'/api/tomar', {
+                await fetch(BASE+'/api/tomar', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -81,11 +81,13 @@ class LoginScreen extends Component {
                     .then((responseJson) => {
                         this.setState({respuesta:responseJson});
                         if(responseJson.val){
-                            Vibration.vibrate([100]);
+                            Vibration.vibrate([200]);
                         }else{
                             Vibration.vibrate([500,1000]);
                         }
-                    });
+                    }).catch(function(err) {
+                        this.setState({respuesta:{val:false,mensaje:"Server error",'icon':'md-thumbs-down','color':'#f8d7da'}});
+                });
             }else{
                 Vibration.vibrate([500,500]);
                 this.setState({respuesta:{val:false,mensaje:"QR code don't exist",'icon':'md-help','color':'#fff3cd'}});
@@ -107,21 +109,21 @@ class LoginScreen extends Component {
         let { onLogin, onLogout, onUser, handleSubmit, auth } = props;
         if(auth.access_token === '') {
             return (
-            <View style={styles.container}>
+            <View style={styles.container} pointerEvents="none">
                 <Text style={{fontWeight: 'bold',textAlign: 'center',width: '100%',fontSize:30,paddingBottom:20}}>
                     QR Attendan {}
                 </Text>
                 <Field style={styles.input} autoCapitalize="none" placeholder="Email" keyboardType="email-address" component={TInput} name={'email'} />
                 <Field style={styles.input} autoCapitalize="none" placeholder="Password" secureTextEntry={true} component={TInput} name={'password'} />
-                <View style={{flexDirection: 'row'}}>
-                    <View style={{flexDirection: 'row',padding:12}}>
+                <View style={{flexDirection: 'row'}} pointerEvents="none">
+                    <View style={{flexDirection: 'row',padding:12}} pointerEvents="none">
                         <Button
                             title="Register"
                             color="#982ef8"
                             style = {styles.button}
                             onPress={ ()=>{ Linking.openURL(BASE+'/register')}} />
                     </View>
-                    <View style={{flexDirection: 'row',padding:12}}>
+                    <View style={{flexDirection: 'row',padding:12}} pointerEvents="none">
                         <Button
                             title = "Login"
                             color = "#236CF5"
@@ -135,9 +137,8 @@ class LoginScreen extends Component {
             )
         } else {
             return (
-
-                    <View style={styles.layouts}>
-                        <View style={styles.layout1}>
+                    <View style={styles.layouts} pointerEvents="none">
+                        <View style={styles.layout1} pointerEvents="none">
                             <View style={{
                                 width: '100%',
                                 height: 50,
@@ -149,8 +150,8 @@ class LoginScreen extends Component {
                                     {this.state.activo.name}
                                 </Text>
                             </View>
-                            <View style={styles.itemcontainer1}>
-                                <View style={styles.itemcontainer1Inner}>
+                            <View style={styles.itemcontainer1} pointerEvents="none">
+                                <View style={styles.itemcontainer1Inner} pointerEvents="none">
                                     <BarCodeScanner
                                         style={styles.item1}
                                         onBarCodeRead={(data) => this.handleBarCodeScanned(data,auth.access_token)}
@@ -171,7 +172,7 @@ class LoginScreen extends Component {
                                             flex: 1,
                                             position: 'relative',
                                             backgroundColor: this.state.respuesta.color
-                                        }}>
+                                        }} pointerEvents="none">
                                             <Ionicons  name={this.state.respuesta.icon} style={{fontSize: 170,height: "50%",color: 'black'}} />
                                             <Text style={{fontSize:30,textAlign: 'center'}}>{this.state.respuesta.mensaje}</Text>
                                             <Button
@@ -197,7 +198,6 @@ class LoginScreen extends Component {
                             </View>
                         </View>
                     </View>
-
                 )
         }
 

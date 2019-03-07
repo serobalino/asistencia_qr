@@ -18,6 +18,12 @@
       "backgroundColor": "#fff",
       "hideExponentText": true
     },
+    "ios": {
+      "bundleIdentifier": "goldenbytes.io"
+    },
+    "android": {
+      "package": "goldenbytes.io"
+    },
     "version": "0.1.0"
   }
 }
