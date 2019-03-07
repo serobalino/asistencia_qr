@@ -48,9 +48,23 @@ class AsistenciaController extends Controller
                 $log->detalle_lo=   $texto;
                 $log->save();
 
-                return (['val'=>true,'mensaje'=>"$registro->nombre_principal $texto ,successfully"]);
+                return (
+                    [
+                        'val'       =>  true,
+                        'mensaje'   =>  "$registro->nombre_principal $texto ,successfully",
+                        'icon'      =>  'md-checkmark-circle-outline',
+                        'color'     =>  '#d4edda'
+                    ]
+                );
             }else{
-                return (['val'=>false,'mensaje'=>"No code is found or there is no course"]);
+                return (
+                    [
+                        'val'       =>  false,
+                        'mensaje'   =>  "No code is found or there is no course active",
+                        'icon'      =>  'md-close-circle-outline',
+                        'color'     =>  '#f8d7da'
+                    ]
+                );
             }
         }
     }
