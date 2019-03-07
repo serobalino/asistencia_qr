@@ -32,6 +32,7 @@ class AsistenciaController extends Controller
 
             $texto      =   $datos->type ? "Registered checkin" : "Registered checkout";
             if($registro && $curso){
+                /*
                 $inscripcion            =   new Asistencia();
                 $inscripcion->id_as     =   md5($registro->id.now());
                 $inscripcion->id_es     =   $registro->id;
@@ -45,7 +46,7 @@ class AsistenciaController extends Controller
                 $log->id_es     =   $registro->id;
                 $log->id_as     =   $inscripcion->id_as;
                 $log->detalle_lo=   $texto;
-                $log->save();
+                $log->save();*/
 
                 return (['val'=>true,'mensaje'=>"$texto ,successfully"]);
             }else{
