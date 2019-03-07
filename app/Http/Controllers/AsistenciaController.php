@@ -42,7 +42,7 @@ class AsistenciaController extends Controller
                 $inscripcion->save();
 
                 $log            =   new Registro();
-                $log->id_us     =   auth()->user()->id;
+                $log->id_us     =   $datos->user()->id;
                 $log->id_es     =   $registro->id;
                 $log->id_as     =   $inscripcion->id_as;
                 $log->detalle_lo=   $texto;
