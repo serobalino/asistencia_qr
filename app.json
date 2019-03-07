@@ -13,6 +13,10 @@
     "orientation": "portrait",
     "primaryColor": "#000",
     "icon": "./App/Assets/icono_app.png",
+    "splash": {
+      "image": "./App/Assets/splash.png",
+      "backgroundColor": "#fff"
+    },
     "loading": {
       "icon": "./App/Assets/icono_app.png",
       "backgroundColor": "#fff",
