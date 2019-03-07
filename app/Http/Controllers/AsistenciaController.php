@@ -51,7 +51,7 @@ class AsistenciaController extends Controller
                 return (
                     [
                         'val'       =>  true,
-                        'mensaje'   =>  "$registro->nombre_principal $texto ,successfully",
+                        'mensaje'   =>  $registro->nombre_principal.PHP_EOL.$texto,
                         'icon'      =>  'md-checkmark-circle-outline',
                         'color'     =>  '#d4edda'
                     ]
@@ -60,7 +60,7 @@ class AsistenciaController extends Controller
                 return (
                     [
                         'val'       =>  false,
-                        'mensaje'   =>  "No code is found or there is no course active",
+                        'mensaje'   =>  "No code is found".PHP_EOL."there is no course active",
                         'icon'      =>  'md-close-circle-outline',
                         'color'     =>  '#f8d7da'
                     ]
