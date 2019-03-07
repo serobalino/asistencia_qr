@@ -1,5 +1,23 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "QR Attendan",
+    "slug": "QR-Attendan",
+    "sdkVersion": "27.0.0",
+    "privacy": "public",
+    "description": "Application to take attendance through QR codes",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "githubUrl": "https://github.com/serobalino/asistencia_qr.git",
+    "orientation": "portrait",
+    "primaryColor": "#000",
+    "icon": "./App/Assets/icono_app.png",
+    "loading": {
+      "icon": "./App/Assets/icono_app.png",
+      "backgroundColor": "#fff",
+      "hideExponentText": true
+    },
+    "version": "0.1.0"
   }
 }

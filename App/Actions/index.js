@@ -1,15 +1,17 @@
 import { LOGIN_URL, USER_URL } from '../Config/URLs'
 import { OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRECT } from '../Config/Settings'
 import {
-    LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, 
+    LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
     LOGOUT_REQUEST,
     USER_REQUEST, USER_SUCCESS, USER_FAILURE
 } from './Types'
+import {  Alert } from 'react-native';
+
 
 
 export function userFetch(auth) {
     return (dispatch) => {
-        console.log('auth',auth)
+        //console.log('auth',auth)
         dispatch(userRequest(auth))
         return fetch(USER_URL,{
             method:'GET',
@@ -21,10 +23,10 @@ export function userFetch(auth) {
         })
         .then(response => response.json())
         .then(json => {
-            console.log('JSON',json)
+            //console.log('JSON',json)
             if(json.hasOwnProperty('error'))
                 dispatch(userFailure(auth,json.message))
-            else 
+            else
                 dispatch(userSuccess(auth,json))
         })
         .catch((error) => {
@@ -46,6 +48,7 @@ export function userSuccess(auth, response){
     }
 }
 export function userFailure(auth, error){
+
     return {
         type:USER_FAILURE,
         payload: { auth, error}
@@ -71,10 +74,11 @@ export function loginFetch(email,password) {
         })
         .then(response => response.json())
         .then(json => {
-            console.log('json',email,json)
-            if(json.hasOwnProperty('error'))
-                dispatch(loginFailure(email,json.message))
-            else 
+            //console.log('json',email,json)
+            if(json.hasOwnProperty('error')) {
+                Alert.alert('Error', json.message);
+                dispatch(loginFailure(email, json.message));
+            }else
                 dispatch(loginSuccess(email,json))
         })
         .catch((error) => {

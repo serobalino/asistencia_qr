@@ -1,8 +1,8 @@
 {
-  "name": "ReduxStuff",
+  "name": "QR-Attendan",
   "version": "0.1.0",
   "private": true,
-"devDependencies": {
+  "devDependencies": {
     "jest-expo": "~27.0.0",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
@@ -19,10 +19,14 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "expo": "^27.0.1",
     "immutable": "^3.8.2",
+    "moment": "^2.24.0",
     "react": "16.3.1",
     "react-native": "~0.55.2",
+    "react-native-action-button": "^2.8.5",
+    "react-native-vector-icons": "^6.3.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-action-buffer": "^1.2.0",
@@ -33,4 +37,3 @@
     "redux-thunk": "^2.3.0"
   }
 }
-
