@@ -61,7 +61,7 @@ class AsistenciaController extends Controller
                     [
                         'val'       =>  false,
                         'mensaje'   =>  "No code is found".PHP_EOL."there is no course active",
-                        'icon'      =>  'md-close-circle-outline',
+                        'icon'      =>  'md-close',
                         'color'     =>  '#f8d7da'
                     ]
                 );
