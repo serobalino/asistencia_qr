@@ -41,12 +41,13 @@ class AsistenciaController extends Controller
                 $inscripcion->fecha_as  =   "$datos->date $datos->time";
                 $inscripcion->save();
 
+                /*
                 $log            =   new Registro();
                 $log->id_us     =   Auth::user()->id;
                 $log->id_es     =   $registro->id;
                 $log->id_as     =   $inscripcion->id_as;
                 $log->detalle_lo=   $texto;
-                $log->save();
+                $log->save();*/
 
                 return (['val'=>true,'mensaje'=>"$registro->name $texto ,successfully"]);
             }else{
