@@ -48,7 +48,7 @@ class AsistenciaController extends Controller
                 $log->detalle_lo=   $texto;
                 $log->save();*/
 
-                return (['val'=>true,'mensaje'=>"$texto ,successfully"]);
+                return (['val'=>true,'mensaje'=>"$registro->name $texto ,successfully"]);
             }else{
                 return (['val'=>false,'mensaje'=>"No code is found or there is no course"]);
             }
