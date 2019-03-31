@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/tomar', "AsistenciaController@tomar")->middleware('auth:api');
+Route::post('/generarQr', "QrController@generarTodos");
