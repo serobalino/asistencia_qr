@@ -37,7 +37,7 @@ class AsistenciaController extends Controller
                 if($anterior){
                     return (
                         [
-                            'val'       =>  true,
+                            'val'       =>  false,
                             'mensaje'   =>  $registro->nombre_principal.PHP_EOL."has already $bandera",
                             'icon'      =>  'md-close',
                             'color'     =>  '#f2b00c'
