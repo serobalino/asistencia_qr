@@ -43,7 +43,7 @@ class AsistenciaController extends Controller
                             'color'     =>  '#f2b00c'
                         ]
                     );
-                }else{
+                }
                     $inscripcion            =   new Asistencia();
                     $inscripcion->id_as     =   md5($registro->id.$datos->type."$datos->date $datos->time");
                     $inscripcion->id_es     =   $registro->id;
@@ -67,7 +67,7 @@ class AsistenciaController extends Controller
                             'color'     =>  '#d4edda'
                         ]
                     );
-                }
+                
             }else{
                 return (
                     [
