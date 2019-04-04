@@ -34,16 +34,7 @@ class AsistenciaController extends Controller
             if($registro && $curso){
                 $anterior   =   Asistencia::where('id_es',$registro->id)->where('id_cu',$curso->id_cu)->latest()->first();
                 $bandera    =   $datos->type ? "checked in" : "checked out";
-                if($anterior->tipo_as===$datos->type){
-                    return (
-                        [
-                            'val'       =>  false,
-                            'mensaje'   =>  $registro->nombre_principal.PHP_EOL."has already $bandera",
-                            'icon'      =>  'md-close',
-                            'color'     =>  '#f2b00c'
-                        ]
-                    );
-                }
+                if($anterior->tipo_as!==$datos->type){
                     $inscripcion            =   new Asistencia();
                     $inscripcion->id_as     =   md5($registro->id.$datos->type."$datos->date $datos->time");
                     $inscripcion->id_es     =   $registro->id;
@@ -60,14 +51,24 @@ class AsistenciaController extends Controller
                     $log->save();
 
                     return (
-                        [
-                            'val'       =>  true,
-                            'mensaje'   =>  $registro->nombre_principal.PHP_EOL.$texto,
-                            'icon'      =>  'md-checkmark-circle-outline',
-                            'color'     =>  '#d4edda'
-                        ]
+                    [
+                        'val'       =>  true,
+                        'mensaje'   =>  $registro->nombre_principal.PHP_EOL.$texto,
+                        'icon'      =>  'md-checkmark-circle-outline',
+                        'color'     =>  '#d4edda'
+                    ]
                     );
-                
+                }else{
+                    return (
+                    [
+                        'val'       =>  false,
+                        'mensaje'   =>  $registro->nombre_principal.PHP_EOL."has already $bandera",
+                        'icon'      =>  'md-close',
+                        'color'     =>  '#f2b00c'
+                    ]
+                    );
+
+                }
             }else{
                 return (
                     [
