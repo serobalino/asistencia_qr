@@ -32,30 +32,42 @@ class AsistenciaController extends Controller
 
             $texto      =   $datos->type ? "Registered checkin" : "Registered checkout";
             if($registro && $curso){
+                $anterior   =   Asistencia::where('id_es',$registro->id)->where('id_cu',$curso->id_cu)->where('tipo_as',$datos->type)->first();
+                $bandera    =   $datos->type ? "check-in" : "check-out";
+                if($anterior){
+                    return (
+                        [
+                            'val'       =>  true,
+                            'mensaje'   =>  $registro->nombre_principal.PHP_EOL."has already $bandera",
+                            'icon'      =>  'md-close',
+                            'color'     =>  '#f2b00c'
+                        ]
+                    );
+                }else{
+                    $inscripcion            =   new Asistencia();
+                    $inscripcion->id_as     =   md5($registro->id.$datos->type."$datos->date $datos->time");
+                    $inscripcion->id_es     =   $registro->id;
+                    $inscripcion->id_cu     =   $curso->id_cu;
+                    $inscripcion->tipo_as   =   $datos->type;
+                    $inscripcion->fecha_as  =   "$datos->date $datos->time";
+                    $inscripcion->save();
 
-                $inscripcion            =   new Asistencia();
-                $inscripcion->id_as     =   md5($registro->id.$datos->type."$datos->date $datos->time");
-                $inscripcion->id_es     =   $registro->id;
-                $inscripcion->id_cu     =   $curso->id_cu;
-                $inscripcion->tipo_as   =   $datos->type;
-                $inscripcion->fecha_as  =   "$datos->date $datos->time";
-                $inscripcion->save();
+                    $log            =   new Registro();
+                    $log->id_us     =   $datos->user()->id;
+                    $log->id_es     =   $registro->id;
+                    $log->id_as     =   $inscripcion->id_as;
+                    $log->detalle_lo=   $texto;
+                    $log->save();
 
-                $log            =   new Registro();
-                $log->id_us     =   $datos->user()->id;
-                $log->id_es     =   $registro->id;
-                $log->id_as     =   $inscripcion->id_as;
-                $log->detalle_lo=   $texto;
-                $log->save();
-
-                return (
-                    [
-                        'val'       =>  true,
-                        'mensaje'   =>  $registro->nombre_principal.PHP_EOL.$texto,
-                        'icon'      =>  'md-checkmark-circle-outline',
-                        'color'     =>  '#d4edda'
-                    ]
-                );
+                    return (
+                        [
+                            'val'       =>  true,
+                            'mensaje'   =>  $registro->nombre_principal.PHP_EOL.$texto,
+                            'icon'      =>  'md-checkmark-circle-outline',
+                            'color'     =>  '#d4edda'
+                        ]
+                    );
+                }
             }else{
                 return (
                     [
