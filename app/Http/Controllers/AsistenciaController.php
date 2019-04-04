@@ -32,9 +32,9 @@ class AsistenciaController extends Controller
 
             $texto      =   $datos->type ? "Registered checkin" : "Registered checkout";
             if($registro && $curso){
-                $anterior   =   Asistencia::where('id_es',$registro->id)->where('id_cu',$curso->id_cu)->where('tipo_as',$datos->type)->first();
-                $bandera    =   $datos->type ? "check-in" : "check-out";
-                if($anterior){
+                $anterior   =   Asistencia::where('id_es',$registro->id)->where('id_cu',$curso->id_cu)->latest()->first();
+                $bandera    =   $datos->type ? "checked in" : "checked out";
+                if($anterior->tipo_as===$datos->type){
                     return (
                         [
                             'val'       =>  false,
