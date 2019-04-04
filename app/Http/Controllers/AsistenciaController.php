@@ -28,7 +28,7 @@ class AsistenciaController extends Controller
             return (['val'=>false,'mensaje'=>$texto,'datos'=>$datos->all()]);
         }else{
             $registro   =   Registrados::all()->where('code',$datos->code)->first();
-            $curso      =   Horario::where('fecha_ho',$datos->date)->first();
+            $curso      =   Horario::where('fecha_ho',$datos->date)->where('desde_ho',">=",$datos->time)->where('hasta_ho',"<=",$datos->time)->first();
 
             $texto      =   $datos->type ? "Registered checkin" : "Registered checkout";
             if($registro && $curso){
