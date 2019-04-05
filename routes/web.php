@@ -21,6 +21,9 @@ Route::middleware(['verified'])->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
         Route::options('/', 'HomeController@historial');
 
+        Route::get('/history', 'HistorialController@index')->name('history');
+        Route::options('/history', 'HistorialController@historial');
+
         Route::get('/users','UsersController@vista')->name('users');
         Route::options('/users','UsersController@users');
         Route::post('/users','UsersController@cambiar');
