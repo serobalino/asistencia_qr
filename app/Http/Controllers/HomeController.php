@@ -38,12 +38,17 @@ class HomeController extends Controller
         $aux[]          =   $a;
 
         if($usuario->admin){
+            $a['name']      =   "All History";
+            $a['icon']      =   "fa fa-list-alt";
+            $a['url']       =   route('history');
+            $aux[]          =   $a;
+
             $a['name']      =   "Registered";
             $a['icon']      =   "fa fa-ticket";
             $a['url']       =   route("registros");
             $aux[]          =   $a;
 
-            $a['name']      =   "Assistance";
+            $a['name']      =   "Attendance";
             $a['icon']      =   "fa fa-check-circle";
             $a['url']       =   route('asistencia');
             $aux[]          =   $a;
