@@ -25,6 +25,7 @@ Vue.use(BootstrapVue);
 
 Vue.component('opciones', require('./components/menu').default);
 Vue.component('historia', require('./components/historia').default);
+Vue.component('total', require('./components/registroTotal').default);
 Vue.component('usuarios', require('./components/usuarios').default);
 Vue.component('registros', require('./components/registros').default);
 Vue.component('asistencia', require('./components/asistencia').default);
