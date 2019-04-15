@@ -36,6 +36,13 @@
                     },
                 },
                 {
+                    label: 'Subject',
+                    field: 'dueno.tipo.nom_inscr',
+                    filterOptions: {
+                        enabled: true,
+                    },
+                },
+                {
                     label: 'Type',
                     field: 'tipo',
                     filterOptions: {
